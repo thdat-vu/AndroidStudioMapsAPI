@@ -18,8 +18,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-    SupportMapFragment mapFragment;
+    private SupportMapFragment mapFragment;
     private GoogleMap myMap;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,16 +33,18 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
 
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-        mapFragment.getMapAsync(googleMap -> {
-            googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-            googleMap.getUiSettings().setZoomControlsEnabled(true);
-        });
+        mapFragment.getMapAsync(this); // Đăng ký MainActivity làm callback
     }
 
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         myMap = googleMap;
 
+        // Cấu hình bản đồ
+        myMap.setMapType(GoogleMap.MAP_TYPE_HYBRID); // Loại bản đồ lai (hybrid)
+        myMap.getUiSettings().setZoomControlsEnabled(true); // Hiển thị nút zoom
+
+        // Thêm marker và di chuyển camera
         LatLng sydney = new LatLng(-34, 151);
         myMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         myMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
