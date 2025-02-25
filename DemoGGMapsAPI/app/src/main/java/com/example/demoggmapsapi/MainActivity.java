@@ -36,6 +36,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         LatLng hoChiMinh = new LatLng(10.7769, 106.7009);
         myMap.addMarker(new MarkerOptions().position(hoChiMinh).title("TP. Hồ Chí Minh"));
         myMap.moveCamera(CameraUpdateFactory.newLatLngZoom(hoChiMinh, 10));
+        myMap.getUiSettings().setZoomControlsEnabled(true);
+        myMap.getUiSettings().setCompassEnabled(true);
+        myMap.getUiSettings().setMyLocationButtonEnabled(true);
+        myMap.getUiSettings().setZoomGesturesEnabled(true);
     }
 
     @Override
